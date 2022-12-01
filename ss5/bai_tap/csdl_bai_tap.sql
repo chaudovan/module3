@@ -69,7 +69,7 @@ delimiter ;
 delimiter //
 create procedure p_delete(IN p_id int)
 begin
-  delete from products where id = p_id;
+  delete from products where id = p_id;	
 end//
 delimiter ;
 

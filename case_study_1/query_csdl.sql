@@ -31,7 +31,6 @@ group by hd.ma_hop_dong;
 
  select dv.ma_dich_vu, dv.ten_dich_vu, dv.dien_tich, dv.chi_phi_thue, ldv.ten_loai_dich_vu from dich_vu dv
  join loai_dich_vu ldv on dv.ma_loai_dich_vu = ldv.ma_loai_dich_vu
- join hop_dong hd on dv.ma_dich_vu = hd.ma_dich_vu
  group by dv.ma_dich_vu having dv.ma_dich_vu not in (
  select dv.ma_dich_vu from dich_vu dv
  join loai_dich_vu ldv on dv.ma_loai_dich_vu = ldv.ma_loai_dich_vu
@@ -98,7 +97,7 @@ where lk.ten_loai_khach like 'Diamond' and (kh.dia_chi like '%Vinh' or kh.dia_ch
 
 -- task 12.	Hiển thị thông tin ma_hop_dong, ho_ten (nhân viên), ho_ten (khách hàng), so_dien_thoai (khách hàng), ten_dich_vu, so_luong_dich_vu_di_kem (được tính dựa trên việc sum so_luong ở dich_vu_di_kem), tien_dat_coc của tất cả các dịch vụ đã từng được khách hàng đặt vào 3 tháng cuối năm 2020 nhưng chưa từng được khách hàng đặt vào 6 tháng đầu năm 2021.
 select * from hop_dong;
-select hd.ma_hop_dong, nv.ho_ten, kh.ho_ten, kh.so_dien_thoai, dv.ten_dich_vu, sum(hdct.so_luong), hd.tien_dat_coc from nhan_vien nv
+select hd.ma_hop_dong, nv.ho_ten, kh.ho_ten, kh.so_dien_thoai, dv.ten_dich_vu,ifnull(sum(hdct.so_luong),0), hd.tien_dat_coc from nhan_vien nv
 join hop_dong hd on hd.ma_nhan_vien = nv.ma_nhan_vien
 join khach_hang kh on kh.ma_khach_hang = hd.ma_khach_hang
 join dich_vu dv on dv.ma_dich_vu = hd.ma_dich_vu
@@ -162,9 +161,8 @@ join hop_dong hd on hd.ma_khach_hang = kh.ma_khach_hang
 join hop_dong_chi_tiet hdct on hdct.ma_hop_dong = hd.ma_hop_dong
 join dich_vu_di_kem dvdk on dvdk.ma_dich_vu_di_kem = hdct.ma_dich_vu_di_kem
 join dich_vu dv on dv.ma_dich_vu = hd.ma_dich_vu
-where year(hd.ngay_lam_hop_dong) = 2021 and (ifnull((dv.chi_phi_thue),0) + ifnull((hdct.so_luong*dvdk.gia),0))>100000
-group by kh.ma_khach_hang
-having  kh.ma_loai_khach = 2;
+where year(hd.ngay_lam_hop_dong) = 2021 and (ifnull((dv.chi_phi_thue),0) + ifnull((hdct.so_luong*dvdk.gia),0))>1000000 and kh.ma_loai_khach=2
+group by kh.ma_khach_hang;
 
 -- task 18.	Xóa những khách hàng có hợp đồng trước năm 2021 (chú ý ràng buộc giữa các bảng).
 
@@ -189,5 +187,28 @@ having sum(hdct.so_luong)>10;
 
 select nv.ma_nhan_vien, nv.ho_ten, nv.email, nv.so_dien_thoai, nv.ngay_sinh, nv.dia_chi from nhan_vien nv
 union
-select kh.ma_khach_hang, kh.ho_ten, kh.email, kh.so_dien_thoai, kh.ngay_sinh, kh.dia_chi from khach_hang kh
+select kh.ma_khach_hang, kh.ho_ten, kh.email, kh.so_dien_thoai, kh.ngay_sinh, kh.dia_chi from khach_hang kh;
+
+-- task 21.	Tạo khung nhìn có tên là v_nhan_vien để lấy được thông tin của tất cả các nhân viên có địa chỉ là “Hải Châu” và đã từng lập hợp đồng cho một hoặc nhiều khách hàng bất kì với ngày lập hợp đồng là “12/12/2019”.
+create view v_nhan_vien as
+select nv.* from nhan_vien nv
+join hop_dong hd on hd.ma_nhan_vien = nv.ma_nhan_vien
+where nv.dia_chi like '%Đà Nẵng' and hd.ngay_lam_hop_dong ='2021-04-25';
+
+-- task 22.	Thông qua khung nhìn v_nhan_vien thực hiện cập nhật địa chỉ thành “Liên Chiểu” đối với tất cả các nhân viên được nhìn thấy bởi khung nhìn này.
+
+update v_nhan_vien set dia_chi = replace(dia_chi,'Hải Châu','Liên Chiểu');
+
+-- task 23.	Tạo Stored Procedure sp_xoa_khach_hang dùng để xóa thông tin của một khách hàng nào đó với ma_khach_hang được truyền vào như là 1 tham số của sp_xoa_khach_hang.
+
+delimiter //
+create procedure sp_xoa_khach_hang(in kh_id int)
+begin
+delete from khach_hang where ma_khach_hang = kh_id;
+end //
+delimiter ;
+
+
+-- task 24.	Tạo Stored Procedure sp_them_moi_hop_dong dùng để thêm mới vào bảng hop_dong với yêu cầu sp_them_moi_hop_dong phải thực hiện kiểm tra tính hợp lệ của dữ liệu bổ sung, với nguyên tắc không được trùng khóa chính và đảm bảo toàn vẹn tham chiếu đến các bảng liên quan.
+
 

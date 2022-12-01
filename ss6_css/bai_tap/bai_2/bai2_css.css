@@ -1,0 +1,22 @@
+h1{
+    margin-bottom: 0;
+    font-size: 60px;
+}
+#mota{
+    margin-top: 5px;
+    text-indent: 0;
+}
+p{
+    font-size: 25px;
+    text-indent: 6%;
+}
+.dauDong{
+    margin-left: 5px;
+}
+.chung{
+    color: blue;
+}
+.sup{
+    color: blue;
+    font-size: 16px;
+}

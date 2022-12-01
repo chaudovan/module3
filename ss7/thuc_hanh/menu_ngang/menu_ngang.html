@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Menu Ngang</title>
+    <style>
+        li{
+            position: relative;
+            width: 100px;
+            float: left;
+            list-style: none;
+            margin: 0;
+            padding:0;
+        }
+        a{
+            width:100px;
+            height: 30px;
+            display: block;
+            text-decoration:none;
+            text-align: center;
+            line-height: 30px;
+            background-color: black;
+            color: white;
+        }
+        /*ul{*/
+        /*    width: 200px;*/
+        /*    display: flex;*/
+        /*    flex-direction: column;*/
+        /*    justify-content: center;*/
+        /*}*/
+        ul ul{
+            position: absolute;
+            top: 30px;
+            left: 15px;
+            visibility: hidden;
+        }
+        ul li:hover ul{
+            visibility: visible;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li><a href="">sem 1</a>
+        <ul>
+            <li><a href="">Computing</a></li>
+            <li><a href="">Computing</a></li>
+            <li><a href="">Computing</a></li>
+            <li><a href="">Computing</a></li>
+        </ul>
+    </li>
+    <li><a href="">sem 2</a>
+        <ul>
+            <li><a href="">Computing</a></li>
+            <li><a href="">Computing</a></li>
+            <li><a href="">Computing</a></li>
+            <li><a href="">Computing</a></li>
+        </ul>
+    </li>
+    <li><a href="">sem 3</a>
+        <ul>
+            <li><a href="">Computing</a></li>
+            <li><a href="">Computing</a></li>
+            <li><a href="">Computing</a></li>
+            <li><a href="">Computing</a></li>
+        </ul>
+    </li>
+    <li><a href="">sem 4</a>
+        <ul>
+            <li><a href="">Computing</a></li>
+            <li><a href="">Computing</a></li>
+            <li><a href="">Computing</a></li>
+            <li><a href="">Computing</a></li>
+        </ul>
+    </li>
+</ul>
+</body>
+</html>
