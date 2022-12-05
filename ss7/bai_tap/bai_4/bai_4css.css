@@ -1,0 +1,143 @@
+.col-1 {
+    width: 8.33%;
+}
+
+.col-2 {
+    width: 16.66%;
+}
+
+.col-3 {
+    width: 25%;
+}
+
+.col-4 {
+    width: 33.33%;
+}
+
+.col-5 {
+    width: 41.66%;
+}
+
+.col-6 {
+    width: 50%;
+}
+
+.col-7 {
+    width: 58.33%;
+}
+
+.col-8 {
+    width: 66.66%;
+}
+
+.col-9 {
+    width: 75%;
+}
+.col-10 {
+    width: 83.33%;
+}
+
+.col-11 {
+    width: 91.66%;
+}
+
+.col-12 {
+    width: 100%;
+}
+* {
+     box-sizing: border-box;
+ }
+.content{
+    display: flex;
+    flex-wrap: wrap;
+}
+.chung{
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+.header{
+    background-color: antiquewhite;
+    width: 100%;
+    height: 50px;
+    padding-top: 1px;
+}
+.header h3 span{
+    background-color: red;
+    color: white;
+    border-radius: 6px;
+}
+.header-link{
+    text-align: center;
+}
+.header-link a{
+ text-decoration: none;
+}
+.footer{
+    text-align: center;
+    background-color: antiquewhite;
+}
+.dau{
+    color: black;
+    font-size: 15px;
+}
+.duoi{
+    color: burlywood;
+    font-size: 12px;
+}
+.content p{
+    margin-bottom: 0;
+}
+.right{
+    padding-left: 20px;
+}
+/*.row{*/
+/*    !*cho phép thẻ div (col) nổi lên trên*!*/
+/*    display: flex;*/
+/*    f*/
+/*    !*Các thẻ div (col)  không đủ chỗ chứa trên 1 hàng thì rớt xuống*!*/
+/*    flex-wrap: wrap;*/
+/*}*/
+/*màn hình điện thoai*/
+@media only screen and (max-width:740px ){
+    .header-link {
+        color: red;
+        text-align: center;
+        font-size: 30px;
+    }
+    .header-link a{
+        text-decoration: none;
+        color: red;
+    }
+    [class*="col-"] {
+        width: 100%;
+    }
+}
+/*Màn hinh laptop và máy tính bảng*/
+@media only screen and (min-width:741px)and (max-width:1240px){
+    .header-link {
+        color: yellow;
+        text-align: center;
+        font-size: 30px;
+    }
+    .header-link a{
+        text-decoration: none;
+        color: yellow;
+    }
+}
+/*Màn hình máy tính pc và tivi smart*/
+@media only screen and (min-width:1241px){
+    .col-l-1 {width: 8.33333%;}
+    .col-l-2 {width: 16.66667%;}
+    .col-l-3 {width: 25%;}
+    .col-l-4 {width: 33.33333%;}
+    .col-l-5 {width: 41.66667%;}
+    .col-l-6 {width: 50%;}
+    .col-l-7 {width: 58.33333%;}
+    .col-l-8 {width: 66.66667%;}
+    .col-l-9 {width: 75%;}
+    .col-l-10 {width: 83.33333%;}
+    .col-l-11 {width: 91.66667%;}
+    .col-l-12 {width: 100%;}
+
+}
