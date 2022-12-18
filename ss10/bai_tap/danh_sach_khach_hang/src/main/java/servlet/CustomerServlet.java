@@ -18,10 +18,10 @@ public class CustomerServlet extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
-        customerList.add(new Customer("Mai Văn Hòa","1983-08-20","Hà Nội"));
-        customerList.add(new Customer("Nguyễn Văn Nam","1983-08-21","Hà Nội"));
-        customerList.add(new Customer("Đỗ Văn Châu","1995-03-22","Hà Nội"));
-        customerList.add(new Customer("Trần Đăng Khoa","1983-08-19","Hà Nội"));
+        customerList.add(new Customer("Mai Văn Hòa","1983-08-20","Hà Nội","https://haycafe.vn/wp-content/uploads/2021/11/hinh-anh-hoat-hinh-de-thuong-cute-dep-nhat.jpg"));
+        customerList.add(new Customer("Nguyễn Văn Nam","1983-08-21","Hà Nội","https://haycafe.vn/wp-content/uploads/2021/11/hinh-anh-hoat-hinh-de-thuong-cute-dep-nhat.jpg"));
+        customerList.add(new Customer("Đỗ Văn Châu","1995-03-22","Hà Nội","https://haycafe.vn/wp-content/uploads/2021/11/hinh-anh-hoat-hinh-de-thuong-cute-dep-nhat.jpg"));
+        customerList.add(new Customer("Trần Đăng Khoa","1983-08-19","Hà Nội","https://haycafe.vn/wp-content/uploads/2021/11/hinh-anh-hoat-hinh-de-thuong-cute-dep-nhat.jpg"));
 
     }
 

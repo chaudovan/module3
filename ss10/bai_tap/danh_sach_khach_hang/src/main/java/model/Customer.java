@@ -4,14 +4,30 @@ public class Customer {
     private String ten;
     private String date;
     private String diaChi;
+    private String img;
 
     public Customer() {
+    }
+
+    public Customer(String ten, String date, String diaChi, String img) {
+        this.ten = ten;
+        this.date = date;
+        this.diaChi = diaChi;
+        this.img = img;
     }
 
     public Customer(String ten, String date, String diaChi) {
         this.ten = ten;
         this.date = date;
         this.diaChi = diaChi;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 
     public String getTen() {
