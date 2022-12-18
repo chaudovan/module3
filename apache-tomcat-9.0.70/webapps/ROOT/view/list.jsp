@@ -57,7 +57,7 @@
                                             aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    Bạn có chắc chắn muốn xóa
+                                    Bạn có chắc chắn muốn xóa <span id="tenSP"></span> ????
                                     <input hidden name="id" id = "idDelete">
                                     <input hidden name="action" value="delete" >
                                 </div>
@@ -85,6 +85,8 @@
 <script>
     function xoa(id,name) {
         document.getElementById("idDelete").value = id;
+        document.getElementById("tenSP").innerText = name;
+
     }
 </script>
 </html>
