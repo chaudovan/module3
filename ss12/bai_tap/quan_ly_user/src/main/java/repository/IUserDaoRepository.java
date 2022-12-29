@@ -16,4 +16,9 @@ public interface IUserDaoRepository {
 
     public boolean updateUser(User user) throws SQLException;
     List<User> search(String nameCountry);
+    void insertUserStrore(User user);
+    User getUserById(int id);
+    List<User> selectAllUserStrore();
+    public boolean updateUserStore(User user);
+    public boolean deleteUserStore(int id);
 }

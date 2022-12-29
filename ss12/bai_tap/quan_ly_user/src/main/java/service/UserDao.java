@@ -38,4 +38,29 @@ public class UserDao implements IUserDao{
     public List<User> search(String nameCountry) {
         return userDaoRepository.search(nameCountry);
     }
+
+    @Override
+    public void insertUserStrore(User user) {
+        userDaoRepository.insertUserStrore(user);
+    }
+
+    @Override
+    public User getUserById(int id) {
+        return userDaoRepository.getUserById(id);
+    }
+
+    @Override
+    public List<User> selectAllUserStrore() {
+        return userDaoRepository.selectAllUserStrore();
+    }
+
+    @Override
+    public boolean updateUserStore(User user) {
+        return userDaoRepository.updateUserStore(user);
+    }
+
+    @Override
+    public boolean deleteUserStore(int id) {
+        return userDaoRepository.deleteUserStore(id);
+    }
 }

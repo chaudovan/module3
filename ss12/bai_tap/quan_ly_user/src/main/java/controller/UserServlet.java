@@ -41,9 +41,10 @@ public class UserServlet extends HttpServlet {
         String country = request.getParameter("country");
         User user = new User(id,name,email,country);
         try {
-            userDao.updateUser(user);
+//            userDao.updateUser(user);
+            userDao.updateUserStore(user);
             response.sendRedirect("/users");
-        } catch (SQLException | IOException throwables) {
+        } catch (IOException throwables) {
             throwables.printStackTrace();
         }
 
@@ -55,9 +56,10 @@ public class UserServlet extends HttpServlet {
         String country = request.getParameter("country");
         User user = new User(name, email, country);
         try {
-            userDao.insertUser(user);
+//            userDao.insertUser(user);
+            userDao.insertUserStrore(user);
             response.sendRedirect("/users");
-        } catch (SQLException | IOException throwables) {
+        } catch (IOException throwables) {
             throwables.printStackTrace();
         }
     }
@@ -104,10 +106,9 @@ public class UserServlet extends HttpServlet {
     private void deleteUser(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
         try {
-            userDao.deleteUser(id);
+//            userDao.deleteUser(id);
+            userDao.deleteUserStore(id);
             response.sendRedirect("/users");
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -140,7 +141,8 @@ public class UserServlet extends HttpServlet {
 
     private void listUser(HttpServletRequest request, HttpServletResponse response) {
         List<User> userList = new ArrayList<>();
-        userList = userDao.selectAllUsers();
+//        userList = userDao.selectAllUsers();
+        userList = userDao.selectAllUserStrore();
         request.setAttribute("userList", userList);
         RequestDispatcher dispatcher = request.getRequestDispatcher("view/list.jsp");
         try {
